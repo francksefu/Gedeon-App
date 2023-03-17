@@ -22,7 +22,7 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-   
+  
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-light">
@@ -30,7 +30,7 @@
         <div class="container bg-transparent pt-5">
             <div class="row bg-transparent pt-5">
                 <div class="col-md-5 bg-transparent m-2">
-                    <h2>Hi Maria, Good Morning</h2>
+                    <h2>Hi Gedeon, Good Morning</h2>
                     <p class=" text-secondary pt-3">
                         Votre dashboard vous donne une vues sur vos performances ou l evolution
                          de votre busness
@@ -43,7 +43,7 @@
                           </svg>
                     </div>
                     <div class="p-3">
-                        <p class="">Total vendues</p>
+                        <p class="">Nombres des sortie pendant ce mois</p>
                         <h2 class="">31</h2>
                     </div>
                    
@@ -55,7 +55,7 @@
                         </svg>
                     </div>
                     <div class="p-3">
-                        <p class="">Total vendues</p>
+                        <p class="">Nombres des entrees pendant ce mois</p>
                         <h2 class="">31</h2>
                     </div>
                     
@@ -63,29 +63,33 @@
             </div>
     
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Top product</h2>
+                <h2 class="p-2">Top activities</h2>
                 <hr class="w-auto">
                 <div class="d-flex flex-row ps-1 pe-1 pt-3 pb-3">
                     <div class=" border border-1 p-3 w-auto ms-2">
                         <img src="banane.png" alt="Product-1" class="img-fluid rounded-3">
-                        <h3>Banenes</h3>
+                        <h3>Depots</h3>
                         <p class="text-secondary">667 items</p>
+                        <p class="text-secondary">667 CDF</p>
                     </div>
                     <div class=" border border-1 p-3 w-auto ms-2">
                         <img src="banane.png" alt="Product-1" class="img-fluid rounded-3">
-                        <h3>Banenes</h3>
-                        <p class="text-secondary">667 items</p>
+                        <h3>Meilleurs champs cultivé 1</h3>
+                        <p class="text-secondary">Nom du client</p>
+                        <p class="text-secondary">1000 CDF</p>
                     </div>
                     <div class=" border border-1 p-3 w-auto ms-2">
                         <img src="banane.png" alt="Product-1" class="img-fluid rounded-3">
-                        <h3>Banenes</h3>
-                        <p class="text-secondary">667 items</p>
+                        <h3>Meilleurs champs cultivé 1</h3>
+                        <p class="text-secondary">Nom du client</p>
+                        <p class="text-secondary">1000 CDF</p>
                     </div>
     
                     <div class=" border border-1 p-3 w-auto ms-2">
                         <img src="banane.png" alt="Product-1" class="img-fluid rounded-3">
-                        <h3>Banenes</h3>
-                        <p class="text-secondary">667 items</p>
+                        <h3>Meilleurs champs cultivé 1</h3>
+                        <p class="text-secondary">Nom du client</p>
+                        <p class="text-secondary">1000 CDF</p>
                     </div>
                 </div>
             </div>
@@ -97,7 +101,7 @@
 
     <footer>
         <hr class="w-100">
-        <p class="text-secondary text-center p-3">&copy; copyright Maria</p>
+        <p class="text-secondary text-center p-3">&copy; copyright franck sefu</p>
     </footer>
     
     <!--<script  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>-->
