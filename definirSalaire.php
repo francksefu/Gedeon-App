@@ -60,7 +60,7 @@
         <?php
                 include 'connexion.php';
                         
-                $reqSql= ("SELECT idSalaire, NomClient, DatesLocation, TypeClient, Nom, Salaire, DatesDit FROM Salaire, Champs_cultive, Personnel WHERE (Salaire.idChamp = Champs_cultive.idChamp) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idSalaire desc");
+                $reqSql= ("SELECT idSalaire, NomClient, DatesLocation, TypeClient, Nom, Salaire, DatesDit FROM Salaire, Champs_cultive, Personnel WHERE (Salaire.idChamp = Champs_cultive.idChamps) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idSalaire desc");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
                     echo '<table class="table border border-1">

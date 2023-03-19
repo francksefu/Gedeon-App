@@ -23,7 +23,7 @@ function navbar() {
         </a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="tracteur.php">Liste les besoins</a></li>
-            <li><a class="dropdown-item" href="addProduct.php">Ajouter un besoin</a></li>
+            <li><a class="dropdown-item" href="addBesoin.php">Ajouter un besoin</a></li>
           </ul>
       </li>
      
@@ -55,7 +55,9 @@ function navbar() {
             <li><a class="dropdown-item" href="personnels.php">Personnelss</a></li>
             <li><a class="dropdown-item" href="addCustomers.php">Ajoutez clients</a></li>
             <li><a class="dropdown-item" href="definirSalaire.php">Liste des salaires</a></li>
-            <li><a class="dropdown-item" href="addUsers.php">Ajoutez salaire</a></li>
+            <li><a class="dropdown-item" href="addDefinirSalaire.php">Ajoutez salaire</a></li>
+            <li><a class="dropdown-item" href="donnerSalaire.php">Liste les paiements</a></li>
+            <li><a class="dropdown-item" href="addDefinirSalaire.php">Ajoutez salaire</a></li>
           </ul>
       </li>
 
