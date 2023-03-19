@@ -41,7 +41,7 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="" class="btn btn-primary p-2">&plus; Add entrer ou sortie tracteur</a>
+                        <a href="addBesoin.php" class="btn btn-primary p-2">&plus; Add entrer ou sortie tracteur</a>
                     </p>
                 </div>
     
@@ -61,7 +61,7 @@
         <?php
                 include 'connexion.php';
                         
-                $reqSql= ("SELECT Cout_Mazout, Cout_Pannes, MontantDepense, Motif, NomTracteur, DatesDep, TotalBesoinT, MJRCaisseT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
+                $reqSql= ("SELECT Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
                     echo '<table class="table border border-1">
@@ -77,7 +77,7 @@
                         <th>Tracteur</th>
                         <th>Date de la depense</th>
                         <th>Total pour cette depense</th>
-                        <th>Dans la caisse</th>
+                        
                         <th>Action</th>
                     </tr>
                     </thead>';
@@ -95,7 +95,7 @@
                     <td>'.$row["NomTracteur"].'</td>
                     <td>'.$row["DatesDep"].'</td>
                     <td>'.$row["TotalBesoinT"].'</td>
-                    <td>'.$row["MJRCaisseT"].'</td>
+                   
                     <td >
                         <div class="d-flex flex-row justify-content-center">
                             <div class="p-2 bg-success m-2 text-white rounded-3">

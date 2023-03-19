@@ -40,10 +40,10 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="" class="btn btn-primary p-2">&plus; Add vente</a>
+                        <a href="addVentes.php" class="btn btn-primary p-2">&plus; Add vente</a>
                     </p>
                 </div>
-    
+   
             </div>
             <div class="row">
                 <div class="col-md-5">

@@ -40,7 +40,7 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="" class="btn btn-primary p-2">&plus; Add travail pour client</a>
+                        <a href="addChamps.php" class="btn btn-primary p-2">&plus; Add travail pour client</a>
                     </p>
                 </div>
     
@@ -71,7 +71,7 @@
                         <th>Nom Client</th>
                         <th>Dates location</th>
                         <th>Type de client</th>
-                        <th>Dans la caisse</th>
+                        <th>Commentaire sur le client</th>
                         <th>Action</th>
                     </tr>
                     </thead>';
@@ -84,7 +84,7 @@
                     <td>'.$row["NomClient"].'</td>
                     <td>'.$row["DatesLocation"].'</td>
                     <td>'.$row["TypeClient"].'</td>
-                    <td>'.$row["MJRCaisse"].'</td>
+                    <td>'.$row["Motif"].'</td>
                     <td >
                         <div class="d-flex flex-row justify-content-center">
                             <div class="p-2 bg-success m-2 text-white rounded-3">

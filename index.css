@@ -31,13 +31,6 @@ td {
     text-align: center;
 }
 
-/*input, span, select, label {
-    z-index: -1;
-}
-
-.moinClaire {
-    z-index: -3;
-}*/
 header {
     z-index: 3;
 }

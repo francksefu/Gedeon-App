@@ -39,9 +39,9 @@ function navbar() {
         </a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="champs.php">Liste des champs cultivé</a></li>
-            <li><a class="dropdown-item" href="addVentes.php">Ajouter champs cultivé</a></li>
+            <li><a class="dropdown-item" href="addChamps.php">Ajouter champs cultivé ou tours</a></li>
             <li><a class="dropdown-item" href="ventes.php">Liste des ventes et interets</a></li>
-           
+            <li><a class="dropdown-item" href="addVentes.php">Ajoutez ventes</a></li>
           </ul>
       </li>
       <li class="nav-item pe-3 dropdown" >
