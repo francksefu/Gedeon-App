@@ -40,7 +40,7 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="" class="btn btn-primary p-2">&plus; Add payement</a>
+                        <a href="addPaiements.php" class="btn btn-primary p-2">&plus; Add payement</a>
                     </p>
                 </div>
     

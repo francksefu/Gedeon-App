@@ -52,12 +52,12 @@ function navbar() {
             Peoples
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="personnels.php">Personnelss</a></li>
-            <li><a class="dropdown-item" href="addCustomers.php">Ajoutez clients</a></li>
+            <li><a class="dropdown-item" href="personnels.php">lister les personnels</a></li>
+            <li><a class="dropdown-item" href="addPersonnels.php">Ajoutez personnels</a></li>
             <li><a class="dropdown-item" href="definirSalaire.php">Liste des salaires</a></li>
-            <li><a class="dropdown-item" href="addDefinirSalaire.php">Ajoutez salaire</a></li>
+            <li><a class="dropdown-item" href="addSalaire.php">Ajoutez salaire</a></li>
             <li><a class="dropdown-item" href="donnerSalaire.php">Liste les paiements</a></li>
-            <li><a class="dropdown-item" href="addDefinirSalaire.php">Ajoutez salaire</a></li>
+            <li><a class="dropdown-item" href="addPaiements.php">Ajoutez paiements</a></li>
           </ul>
       </li>
 
