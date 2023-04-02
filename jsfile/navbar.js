@@ -70,9 +70,9 @@ function navbar() {
         </a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="caisseOut.php">Listez les sorties dans caisse</a></li>
-            <li><a class="dropdown-item" href="addSorties.php">Ajoutez sortie dans caisse</a></li>
+            <li><a class="dropdown-item" href="addCaisseout.php">Ajoutez sortie dans caisse</a></li>
             <li><a class="dropdown-item" href="caisseIn.php">Listez les entrer dans caisse</a></li>
-            <li><a class="dropdown-item" href="addSorties.php">Ajoutez entrer dans caisse</a></li>
+            <li><a class="dropdown-item" href="addCaissein.php">Ajoutez entrer dans caisse</a></li>
           </ul>
       </li>
 
@@ -85,11 +85,7 @@ function navbar() {
         </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="depot.php">Listez les depots</a></li>
-                <li><a class="dropdown-item" href="addApprovisionnement.php">Ajoutez dans depot</a></li>
-                <li><a class="dropdown-item" href="historique.php">Listez les historiques</a></li>
-                <li><a class="dropdown-item" href="addBonusOuPerte.php">Ajoutez les bonus ou les pertes</a></li>
-                <li><a class="dropdown-item" href="detteEntreprise.php">Listez les dettes de l entreprises</a></li>
-                <li><a class="dropdown-item" href="addDetteEntreprise.php">Ajoutez les dettes de l entreprises</a></li>
+                <li><a class="dropdown-item" href="addDepot.php">Ajoutez dans depot</a></li>
             </ul>
         </li>
 

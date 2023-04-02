@@ -22,7 +22,9 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-   
+    <script defer src="./jsfile/jquery-3.6.1.min.js"></script>
+    <script defer src="./jsfile/produit.js"></script>
+
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-light">
@@ -70,10 +72,11 @@
                         <th>Prix vente</th>
                         <th>benefices</th>
                         <th>Dates</th>
+                        <th>Commentaire</th>
                         <th>Action</th>
                     </tr>
                     </thead>';
-                 
+                
                     while($row= mysqli_fetch_assoc($result)){
                             echo'
                             <tr>
@@ -81,6 +84,7 @@
                     <td>'.$row["PV"].'</td>
                     <td>'.$row["Benefice"].'</td>
                     <td>'.$row["DatesVente"].'</td>
+                    <td>'.$row["Commentaire"].'</td>
                     <td >
                         <div class="d-flex flex-row justify-content-center">
                             <div class="p-2 bg-success m-2 text-white rounded-3">

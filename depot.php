@@ -22,7 +22,8 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-   
+    <script defer src="./jsfile/jquery-3.6.1.min.js"></script>
+    <script defer src="./jsfile/produit.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-light">
@@ -41,7 +42,7 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="addVentes.html" class="btn btn-primary p-2">&plus; Ajoutez du materiel dans l depot</a>
+                        <a href="addDepot.php" class="btn btn-primary p-2">&plus; Ajoutez du materiel dans l depot</a>
                     </p>
                 </div>
     

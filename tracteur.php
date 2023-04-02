@@ -22,7 +22,9 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-   
+    <script defer src="./jsfile/jquery-3.6.1.min.js"></script>
+    <script defer src="./jsfile/produit.js"></script>
+
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-light">
@@ -61,12 +63,13 @@
         <?php
                 include 'connexion.php';
                         
-                $reqSql= ("SELECT Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
+                $reqSql= ("SELECT idDepense, Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
                     echo '<table class="table border border-1">
                     <thead class="bg-secondary text-white">
                     <tr>
+                        <th>ID</th>
                         <th>Nom Client</th>
                         <th>Type de travail</th>
                         <th>Date de location</th>
@@ -84,7 +87,8 @@
                  
                     while($row= mysqli_fetch_assoc($result)){
                             echo'
-                            <tr>
+                    <tr>
+                    <td>'.$row["idDepense"].'</td>
                     <td>'.$row["NomClient"].'</td>
                     <td>'.$row["TypeClient"].'</td>
                     <td>'.$row["DatesLocation"].'</td>

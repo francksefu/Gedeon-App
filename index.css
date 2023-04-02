@@ -32,6 +32,10 @@ td {
 }
 
 header {
-    z-index: 3;
+   z-index: 3;
+}
+
+.back {
+  background-color: beige;
 }
 

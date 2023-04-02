@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="bg-light">
+<body class="back">
 <?php
   include 'connexion.php';
   function datachamps(){
@@ -42,19 +42,44 @@
 
 }
 
+function dataBesoin(){
+    include 'connexion.php';
+    $sql = ("SELECT idDepense,Tracteur.idChamps, Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idDepense"].":: Nom client ::".$row["NomClient"].":: Type  ::".$row["TypeClient"].":: DatesLocation ::".$row["DatesLocation"].":: cout_M ::".$row["Cout_Mazout"].":: cout_P ::".$row["Cout_Pannes"].":: montant ::".$row["MontantDepense"].":: Motif ::".$row["Motif"].":: tracteur ::".$row["NomTracteur"].":: Dates dep ::".$row["DatesDep"]."'>".$row["NomClient"]." : ".$row["DatesLocation"]." : ".$row["TypeClient"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}  
+
+}
+
 ?>
 
     <main>
     
         <div class="container bg-transparent pt-5">
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Add besoin du tracteur</h2>
+                <h2 class="p-2">Modifier besoin du tracteur</h2>
                 <hr class="w-auto">
                 <div class="ps-1 pe-1 pt-3 pb-3">
-                <!--<form class="ps-1 pe-1 pt-3 pb-3" method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
+                <!--<form class="ps-1 pe-1 pt-3 b-3" method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
+                    <div class="input-group mb-3  mx-auto d-block">
+                        <span class="input-group-text " id="id">Identifiant*</span>
+                        <input required type="text" list="dataBesoin" id="identifiantM" class="form-control w-50" placeholder="entrer identifiant" aria-label="Username" aria-describedby="nom" >
+                            <datalist id="dataBesoin">
+                                <?php 
+                                    dataBesoin();
+
+                                ?>
+                            </datalist>
+                    </div>
                     <div class="input-group mb-3 w-50 mx-auto d-block">
                         <span class="input-group-text w-50" id="dates">Dates de la depense*</span>
-                        <input required type="date"  name="dates" id="datesDep" class="form-control w-50" placeholder="mettre la date" aria-label="Username" aria-describedby="nom" value="<?php $d = strtotime("today"); echo date('Y-m-d',$d); ?>">
+                        <input required type="date"  name="dates" id="datesDep" class="form-control w-50" placeholder="mettre la date" aria-label="Username" aria-describedby="nom" >
                     </div>
                     <div class="row">
                         <div class="input-group mb-3 col-md-6">
@@ -114,8 +139,7 @@
                       </div>
 
                       <p id="txtHint"></p>
-                      <input type="hidden" value="add" id="typeFormulaire">
-    
+                      <input type="hidden" value="update" id="typeFormulaire">
                       <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez ce besoin</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
       </div>    

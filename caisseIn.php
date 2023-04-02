@@ -22,7 +22,8 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-   
+    <script defer src="./jsfile/jquery-3.6.1.min.js"></script>
+    <script defer src="./jsfile/produit.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-light">
@@ -40,7 +41,7 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="addVentes.html" class="btn btn-primary p-2">&plus; Ajoutez entrer</a>
+                        <a href="addCaissein.php" class="btn btn-primary p-2">&plus; Ajoutez entrer</a>
                     </p>
                 </div>
     
@@ -60,7 +61,7 @@
                 </div>
                 <div class="input-group w-50 col-md-5">
                     <span class="input-group-text">Search: </span>
-                    <input type="text" class="form-control" placeholder="Entrer un detail dont vous vous sur un utilisateur">
+                    <input type="text" id="input" class="form-control" placeholder="Entrer un detail dont vous vous sur un utilisateur">
                 </div>
             </div>
         </div>
@@ -72,7 +73,7 @@
                 $reqSql= ("SELECT * FROM CaisseInput order by idCaisseIn desc ");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
-                    echo '<table class="table border border-1">
+                    echo '<table id="table" class="table border border-1">
                     <thead class="bg-secondary text-white">
                     <tr>
                         <th>Montant entrer</th>
