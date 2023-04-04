@@ -20,7 +20,8 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-    <script defer src="./takeBesoin.js"></script>
+    <script defer src="./jsfile/takeBesoinBon.js"></script>
+    <!--<script defer src="./takeBesoin.js"></script>-->
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -114,7 +115,7 @@
                       </div>
 
                       <p id="txtHint"></p>
-                      <input type="hidden" value="add" id="typeFormulaire">
+                     
     
                       <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez ce besoin</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->

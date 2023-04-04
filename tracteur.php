@@ -26,6 +26,7 @@
     <script defer src="./jsfile/produit.js"></script>
 
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="modifier.css">
 </head>
 <body class="bg-light">
    
@@ -70,6 +71,7 @@
                     <thead class="bg-secondary text-white">
                     <tr>
                         <th>ID</th>
+                        <th class="cache">Information Client</>
                         <th>Nom Client</th>
                         <th>Type de travail</th>
                         <th>Date de location</th>
@@ -84,22 +86,23 @@
                         <th>Action</th>
                     </tr>
                     </thead>';
-                 
+              
                     while($row= mysqli_fetch_assoc($result)){
-                            echo'
+                          echo'
                     <tr>
                     <td>'.$row["idDepense"].'</td>
-                    <td>'.$row["NomClient"].'</td>
-                    <td>'.$row["TypeClient"].'</td>
-                    <td>'.$row["DatesLocation"].'</td>
-                    <td>'.$row["Cout_Mazout"].'</td>
-                    <td>'.$row["Cout_Pannes"].'</td>
-                    <td>'.$row["MontantDepense"].'</td>
-                    <td>'.$row["Motif"].'</td>
-                    <td>'.$row["NomTracteur"].'</td>
-                    <td>'.$row["DatesDep"].'</td>
+                    <td class="montre">'.$row["NomClient"].'</td>
+                    <td class="montre">'.$row["TypeClient"].'</td>
+                    <td class="montre">'.$row["DatesLocation"].'</td>
+                    <td class="cache"><input type="text"></td>
+                    <td>'.$row["Cout_Mazout"].'<input type="float" id="cm-'.$row["idDepense"].'" class="cache valeur" value="'.$row["Cout_Mazout"].'"></td>
+                    <td>'.$row["Cout_Pannes"].'<input type="float" id="cp-'.$row["idDepense"].'" class="cache valeur" value="'.$row["Cout_Pannes"].'"></td>
+                    <td>'.$row["MontantDepense"].'<input type="float" id="montant-'.$row["idDepense"].'" class="cache valeur" value="'.$row["MontantDepense"].'"></td>
+                    <td>'.$row["Motif"].'<input type="text" class="cache" id="'.$row["idDepense"].'-motif" value="'.$row["Motif"].'"></td>
+                    <td>'.$row["NomTracteur"].'<input type="text" class="cache" id="'.$row["idDepense"].'-nom" value="'.$row["NomTracteur"].'"></td>
+                    <td>'.$row["DatesDep"].'<input type="date" class="cache" id="'.$row["idDepense"].'-dates" value="'.$row["DatesDep"].'"></td>
                     <td>'.$row["TotalBesoinT"].'</td>
-                   
+                  
                     <td >
                         <div class="d-flex flex-row justify-content-center">
                             <div class="p-2 bg-success m-2 text-white rounded-3">
@@ -118,7 +121,7 @@
                                       </svg>
                                 </a>
                             </div>
-                            <div class="p-2 bg-primary m-2 text-white rounded-3">
+                            <div class="p-2 bg-primary m-2 text-white rounded-3 montre">
                                 <a href="#" class="text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
@@ -126,10 +129,17 @@
                                 </a>
                             </div>  
                         </div>
+                        <div class="p-2 bg-primary m-2 text-white rounded-3 cache checking" id="check-'.$row["idDepense"].'">
+                                <a href="#" class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                </svg>
+                                </a>
+                            </div>  
                     </td>
                   </tr>
                   <tr>
-                            ';
+                           ';
                     }
                     echo"</table>";
                 }else{echo "Pas des donnees dans la base ";}

@@ -20,7 +20,7 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-    <script defer src="./takeBesoin.js"></script>
+    <script defer src="./jsfile/takeBesoinBon.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -50,7 +50,7 @@ function dataBesoin(){
     if(mysqli_num_rows($result)>0){
                         
         while($row= mysqli_fetch_assoc($result)){
-            echo"<option value='ID ::".$row["idDepense"].":: Nom client ::".$row["NomClient"].":: Type  ::".$row["TypeClient"].":: DatesLocation ::".$row["DatesLocation"].":: cout_M ::".$row["Cout_Mazout"].":: cout_P ::".$row["Cout_Pannes"].":: montant ::".$row["MontantDepense"].":: Motif ::".$row["Motif"].":: tracteur ::".$row["NomTracteur"].":: Dates dep ::".$row["DatesDep"]."'>".$row["NomClient"]." : ".$row["DatesLocation"]." : ".$row["TypeClient"]."</option>"; 
+            echo"<option value='ID ::".$row["idDepense"].":: Nom client ::".$row["NomClient"].":: Type  ::".$row["TypeClient"].":: DatesLocation ::".$row["DatesLocation"].":: cout_M ::".$row["Cout_Mazout"].":: cout_P ::".$row["Cout_Pannes"].":: montant ::".$row["MontantDepense"].":: Motif ::".$row["Motif"].":: tracteur ::".$row["NomTracteur"].":: Dates dep ::".$row["DatesDep"].":: champ ::".$row["idChamps"]."'>".$row["NomClient"]." : ".$row["DatesLocation"]." : ".$row["TypeClient"]."</option>"; 
         }
                 
    }else{echo "Une erreur s est produite ";}  
@@ -140,7 +140,7 @@ function dataBesoin(){
 
                       <p id="txtHint"></p>
                       <input type="hidden" value="update" id="typeFormulaire">
-                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez ce besoin</button>
+                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">modifier ce besoin</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
       </div>    
                 
