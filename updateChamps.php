@@ -23,19 +23,42 @@
     <script defer src="./jsfileAjax/takeChamp.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
+<?php
+  function dataChamps(){
+    include 'connexion.php';
+    $sql = ("SELECT * FROM Champs_cultive order by idChamps desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idChamps"].":: Nbres hectares ::".$row["NbreHectares"].":: Montant  ::".$row["MontantIn"].":: Nom cu client ::".$row["NomClient"].":: Dates location ::".$row["DatesLocation"].":: Type ::".$row["TypeClient"].":: Motif ::".$row["Motif"]."'>montant = ".$row["MontantIn"]." client : ".$row["NomClient"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}  
 
-<body class="bg-light">
+}
+?>
+<body class="back">
 
 
     <main>
     
         <div class="container bg-transparent pt-5">
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Add client pour champs ou tours</h2>
+                <h2 class="p-2">Modifier client pour champs ou tours</h2>
                 <hr class="w-auto">
                 <div class="ps-1 pe-1 pt-3 pb-3">
-                <input type="hidden" id="identifiantM" value="">
-                 
+                <div class="input-group mb-3  mx-auto d-block">
+                        <span class="input-group-text " id="id">Identifiant*</span>
+                        <input required type="text" list="dataBesoin" id="identifiantM" class="form-control w-50" placeholder="entrer identifiant" aria-label="Username" aria-describedby="nom" >
+                            <datalist id="dataBesoin">
+                                <?php 
+                                    dataChamps();
+
+                                ?>
+                            </datalist>
+                    </div>
                 <!--<form class="ps-1 pe-1 pt-3 pb-3" method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
                 <div class="row">
                     <div class="col-md-4">
@@ -69,7 +92,7 @@
                     <div class="input-group col-md-6">
                         <span class="input-group-text">Sommes entrée*</span>
                         <input required type="float" id="montant" name="CM" class="form-control" placeholder="entrer argent" aria-label="Amount (to the nearest cdf)">
-                        <span class="input-group-text">$</span>
+                        <span class="input-group-text">FC</span>
                         <small id="montantVide"></small>
                     </div>
                 </div>
@@ -81,8 +104,8 @@
                 
                       
                 <p id="txtHint"></p>
-                <input type="hidden" value="add" id="typeFormulaire">
-                <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez</button>
+                <input type="hidden" value="update" id="typeFormulaire">
+                <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Modifier</button>
             
       </div>    
                 

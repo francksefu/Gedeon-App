@@ -62,17 +62,17 @@
                 $this->message = mysqli_error($db);
                 return;
             }
-            $upd3= ("UPDATE `Tracteur` SET `Motif` = ".$this->motif." WHERE idDepense =$this->idDepense");
+            $upd3= ("UPDATE `Tracteur` SET `Motif` = '".$this->motif."' WHERE idDepense =$this->idDepense");
             if(mysqli_query($db,$upd3)){echo"";}else{
                 $this->message = mysqli_error($db);
                 return;
             }
-            $upd4= ("UPDATE `Tracteur` SET `NomTracteur` = ".$this->nomTracteur." WHERE idDepense =$this->idDepense");
+            $upd4= ("UPDATE `Tracteur` SET `NomTracteur` = '".$this->nomTracteur."' WHERE idDepense =$this->idDepense");
             if(mysqli_query($db,$upd4)){echo"";}else{
                 $this->message = mysqli_error($db);
                 return;
             }
-            $upd5= ("UPDATE `Tracteur` SET `DatesDep` = ".$this->datesDep." WHERE idDepense =$this->idDepense");
+            $upd5= ("UPDATE `Tracteur` SET `DatesDep` = '".$this->datesDep."' WHERE idDepense =$this->idDepense");
             if(mysqli_query($db,$upd5)){echo"";}else{
                 $this->message = mysqli_error($db);
                 return;

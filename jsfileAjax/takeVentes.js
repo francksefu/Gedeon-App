@@ -1,4 +1,5 @@
-// take all value inside inputs
+// take all value inside input
+const identifiantM = document.querySelector('#identifiantM');
 const datesVente = document.querySelector('#datesVente');
 const nomProduit = document.querySelector('#nomProduit');
 const pA = document.querySelector('#pA');
@@ -17,6 +18,20 @@ let feedback = '';
 const compareFeedback = `<div class='alert alert-success' role='alert'>
 Insertion fait avec success
 </div>`;
+const typeForm = document.querySelector('#typeFormulaire');
+let idVentes;
+if (typeForm.value === 'update') {
+  identifiantM.addEventListener('change', () => {
+    const tabValeur = identifiantM.value.split('::');
+    datesVente.value = tabValeur[9];
+    pA.value = tabValeur[3];
+    pV.value = tabValeur[5];
+    idVentes = tabValeur[1];
+    nomProduit.value = tabValeur[11];
+    motif.value = tabValeur[13];
+    benefice.value = tabValeur[7];
+  });
+}
 
 // message if input in empty
 const messageVide = 'Veuillez remplir ce champs svp';
@@ -72,14 +87,21 @@ btn.addEventListener('click', () => {
       } else {
         enleveMessage(pvVide);
       }
+      let prend;
+      if (typeForm.value === 'update') {
+        prend = pA.value+"::"+pV.value+"::"+(pV.value - pA.value)+"::"+datesVente.value+"::"+nomProduit.value+"::"+motif.value+"::"+idVentes+"::update";
+      } else {
+        prend = pA.value+"::"+pV.value+"::"+(pV.value - pA.value)+"::"+datesVente.value+"::"+nomProduit.value+"::"+motif.value;
+      }
   
-  const prend = pA.value+"::"+pV.value+"::"+(pV.value - pA.value)+"::"+datesVente.value+"::"+nomProduit.value+"::"+motif.value;
   showHint(prend);
  
     pA.value =""; 
     pV.value = "";
     motif.value = "";
     nomProduit.value = "";
+    identifiantM.value = "";
+    benefice.value = "";
     
 });
 

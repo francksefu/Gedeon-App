@@ -1,3 +1,4 @@
+const identifiantM = document.querySelector('#identifiantM')
 const infoChamps = document.querySelector('#nomChamps');
 const mazout = document.querySelector('#cout_Mazout');
 const pannes = document.querySelector('#cout_Pannes');

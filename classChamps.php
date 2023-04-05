@@ -1,7 +1,7 @@
 <?php
 
     class Champs {
-        private $idChamps;
+        public $idChamps;
         private $hectaresTours;
         private $montant;
         private $nomClient;
@@ -34,31 +34,89 @@
                 $this->message = mysqli_error($db);
             }
         }
-    }
 
+        function updateChamps() {
+            include 'connexion.php';
+            $updC= ("UPDATE `Champs_cultive` SET `NbreHectares` = $this->hectaresTours WHERE idChamps =$this->idChamps");
+            if(mysqli_query($db,$updC)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+
+            $updC1= ("UPDATE `Champs_cultive` SET `MontantIn` = ".$this->montant." WHERE idChamps =$this->idChamps");
+            if(mysqli_query($db,$updC1)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC2= ("UPDATE `Champs_cultive` SET `NomClient` = '".$this->nomClient."' WHERE idChamps =$this->idChamps");
+            if(mysqli_query($db,$updC2)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC3= ("UPDATE `Champs_cultive` SET `DatesLocation` = '".$this->datesLocation."' WHERE idChamps =$this->idChamps");
+            if(mysqli_query($db,$updC3)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC4= ("UPDATE `Champs_cultive` SET `TypeClient` = '".$this->typeClient."' WHERE idChamps =$this->idChamps");
+            if(mysqli_query($db,$updC4)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC5= ("UPDATE `Champs_cultive` SET `Motif` = '".$this->motif."' WHERE idChamps =$this->idChamps");
+            if(mysqli_query($db,$updC5)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
+    }
+    $idChamps;
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     
     $autre = '';
-    if ($q !== "") {
-        $hint = $q;
-        $tracteur = new Champs($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
-        $tracteur->insererChamps();
-        $autre = $tracteur->message;
-        if( $tracteur->message) {
-            $hint = $autre;
+    if (end($tabC) != 'update') {
+        if ($q !== "") {
+            $hint = $q;
+            $tracteur = new Champs($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
+            $tracteur->insererChamps();
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+            
         }
-        
+    
+        $sucess = '<div class="alert alert-success" role="alert">
+        Insertion fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+      </div>';
+        echo $hint == $autre ? $error : $sucess;
+    } else {
+        if ($q !== "") {
+            $idChamps = $tabC[6];
+            $hint = $q;
+            $tracteur = new Champs($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
+            $tracteur->idChamps = $idChamps;
+            $tracteur->updateChamps();
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+           
+        }
+        $sucess = '<div class="alert alert-success" role="alert">
+        Modification fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+      </div>';
+        echo $hint == $autre ? $error : $sucess;
     }
-
-    $sucess = '<div class="alert alert-success" role="alert">
-    Insertion fait avec success
-  </div>';
-
-  $error = '<div class="alert alert-danger" role="alert">
-  Erreur '.$autre.'
-</div>';
-    echo $hint == $autre ? $error : $sucess;
     
 
 ?>

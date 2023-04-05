@@ -20,32 +20,57 @@
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-    <script defer src="./jsfile/takeCaissein.js"></script>
+    <script defer src="./jsfile/takeCaisseout.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
+<?php
+  function dataCaisseOut(){
+    include 'connexion.php';
+    $sql = ("SELECT * FROM CaisseOut order by idCaisseOut desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idCaisseOut"].":: Montant entrer ::".$row["MontantOut"].":: Motif  ::".$row["Commentaire"].":: Type ::".$row["Type"].":: Dates ::".$row["DatesOut"]."'>montant = ".$row["MontantOut"]." commentaire : ".$row["Commentaire"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}  
 
-<body class="bg-light">
+}
+?>
+<body class="back">
 
     <main>
     
         <div class="container bg-transparent pt-5">
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Add entrée dans caisse</h2>
+                <h2 class="p-2">Modifier sortie dans caisse</h2>
                 <hr class="w-auto">
                 <div class="ps-1 pe-1 pt-3 pb-3">
-                <!--<form class="ps-1 pe-1 pt-3 pb-3"method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
-                <input required type="hidden" id="identifiantM" value="">
+                 
+                <!--<form class="ps-1 pe-1 pt-3 pb-3" method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
+                <div class="input-group mb-3  mx-auto d-block">
+                        <span class="input-group-text " id="id">Identifiant*</span>
+                        <input required type="text" list="dataBesoin" id="identifiantM" class="form-control w-50" placeholder="entrer identifiant" aria-label="Username" aria-describedby="nom" >
+                            <datalist id="dataBesoin">
+                                <?php 
+                                    dataCaisseOut();
+
+                                ?>
+                            </datalist>
+                    </div>
                     <div class="input-group mb-3 w-50 mx-auto d-block">
                         <span class="input-group-text w-50" id="dates">Dates *</span>
                         <input required type="date"  name="dates" id="datesout" class="form-control w-50" placeholder="mettre la date" aria-label="Username" aria-describedby="nom" value="<?php $d = strtotime("today"); echo date('Y-m-d',$d); ?>">
                     </div>
                     <div class="row">
-                    
+                   
                         <div class="input-group mb-3 col-md-6">
-                            <label class="input-group-text" for="type">Type d entrer</label>
+                            <label class="input-group-text" for="type">Type de sorties</label>
                             <select class="form-select" id="type">
                               <option selected value="autres">Autres</option>
-                              <option value="Emprunt">Remise Emprunt</option>
+                              <option value="Emprunt">Emprunt</option>
                               <option value="Financement">Financement</option>
                               
                             </select>
@@ -56,8 +81,8 @@
                           <div class="col-md-7 mt-5 mb-4">
                             <div class="input-group ">
                                 <span class="input-group-text">Montant*</span>
-                                <input required type="float" id="montant" name="CM" class="form-control" placeholder="entrer montant entré" aria-label="Amount (to the nearest cdf)">
-                                <span class="input-group-text">$</span>
+                                <input required type="float" id="montant" name="CM" class="form-control" placeholder="entrer montant sortie" aria-label="Amount (to the nearest cdf)">
+                                <span class="input-group-text">FC</span>
                             </div>
                             <small id="montantVide"></small>
                         </div>
@@ -73,8 +98,8 @@
                       </div>
 
                       <p id="txtHint"></p>
-                      <input type="hidden" value="add" id="typeFormulaire">
-                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez</button>
+                      <input type="hidden" value="update" id="typeFormulaire">
+                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Modifier</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
       </div>    
                 
@@ -88,6 +113,6 @@
         <hr class="w-100">
         <p class="text-secondary text-center p-3">&copy; copyright franck</p>
     </footer>
-    
+   
 </body>
 </html>

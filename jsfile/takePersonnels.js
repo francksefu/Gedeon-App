@@ -1,4 +1,5 @@
-// take all value inside inputs
+// take all value inside input
+const identifiantM = document.querySelector('#identifiantM');
 const nomPersonnel = document.querySelector('#nomPersonnel');
 const telephone = document.querySelector('#telephone');
 const poste = document.querySelector('#poste');
@@ -13,6 +14,18 @@ let feedback = '';
 const compareFeedback = `<div class='alert alert-success' role='alert'>
 Insertion fait avec success
 </div>`;
+const type = document.querySelector('#typeFormulaire');
+let idPersonnel;
+if (type.value === 'update') {
+    identifiantM.addEventListener('change', () => {
+      const tabValeur = identifiantM.value.split('::');
+      nomPersonnel.value = tabValeur[5];
+      telephone.value = tabValeur[7];
+      poste.value = tabValeur[3];
+      idPersonnel = tabValeur[1];
+    })
+    
+  }
 
 const messageComplete = valeur => {
   valeur.textContent = messageVide;
@@ -59,8 +72,14 @@ btn.addEventListener('click', () => {
   } else {
     enleveMessage(posteVide);
   }
- 
-  const prend = poste.value+"::"+nomPersonnel.value+"::"+telephone.value;
+
+  let prend;
+  if (type.value == 'update') {
+    prend = poste.value+"::"+nomPersonnel.value+"::"+telephone.value+"::"+idPersonnel+"::update";
+  } else {
+    prend = poste.value+"::"+nomPersonnel.value+"::"+telephone.value;
+  }
+
   showHint(prend);
   
     nomPersonnel.value =""; 

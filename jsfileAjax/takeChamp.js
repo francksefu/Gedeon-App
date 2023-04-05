@@ -1,4 +1,5 @@
 // take all value inside inputs
+const identifiantM = document.querySelector('#identifiantM')
 const nomClient = document.querySelector('#nomClient');
 const hectareTour = document.querySelector('#champsTours');
 const typeClient = document.querySelector('#type');
@@ -15,7 +16,20 @@ let feedback = '';
 const compareFeedback = `<div class='alert alert-success' role='alert'>
 Insertion fait avec success
 </div>`;
-
+const typeForm = document.querySelector('#typeFormulaire');
+let idChamps;
+if (typeForm.value === 'update') {
+  identifiantM.addEventListener('change', () => {
+    const tabValeur = identifiantM.value.split('::');
+    nomClient.value = tabValeur[7];
+    montant.value = tabValeur[5];
+    hectareTour.value = tabValeur[3];
+    idChamps = tabValeur[1];
+    datesLocation.value = tabValeur[9];
+    typeClient.value = tabValeur[11];
+    motif.value = tabValeur[13];
+  });
+}
 const messageComplete = valeur => {
   valeur.textContent = messageVide;
   valeur.style.color = 'red';
@@ -69,11 +83,17 @@ btn.addEventListener('click', () => {
     enleveMessage(montantVide);
   }
  
-  const prend = hectareTour.value+"::"+montant.value+"::"+nomClient.value+"::"+datesLocation.value+"::"+typeClient.value+"::"+motif.value;
+  let prend;
+  if(typeForm.value === 'update') {
+    prend = hectareTour.value+"::"+montant.value+"::"+nomClient.value+"::"+datesLocation.value+"::"+typeClient.value+"::"+motif.value+"::"+idChamps+"::update";
+  } else {
+    prend = hectareTour.value+"::"+montant.value+"::"+nomClient.value+"::"+datesLocation.value+"::"+typeClient.value+"::"+motif.value;
+  }
   showHint(prend);
   
     hectareTour.value =""; 
     montant.value = "";
-    nomClient.value = ""
-    
+    nomClient.value = "";
+    motif.value = "";
+    identifiantM.value = "";
 });

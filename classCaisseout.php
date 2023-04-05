@@ -1,7 +1,7 @@
 <?php
 
     class CaisseOut {
-        private $idCaisseOut;
+        public $idCaisseOut;
         private $montant;
         private $motif;
         private $type;
@@ -17,7 +17,7 @@
             $this->type = $type;
         }
 
-        
+       
         function insererCaisseOut() {
             include 'connexion.php';
             $sql = ("INSERT INTO CaisseOut (MontantOut, Commentaire, `Type`, DatesOut) values ('".$this->montant."', '".$this->motif."', '".$this->type."', '".$this->datesout."')");
@@ -27,30 +27,78 @@
                 $this->message = mysqli_error($db);
             }
         }
+
+        function updateCaisseOut() {
+            include 'connexion.php';
+            $updC= ("UPDATE `CaisseOut` SET `MontantOut` = $this->montant WHERE idCaisseOut =$this->idCaisseOut");
+            if(mysqli_query($db,$updC)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+
+            $updC1= ("UPDATE `CaisseOut` SET `Commentaire` = '".$this->motif."' WHERE idCaisseOut =$this->idCaisseOut");
+            if(mysqli_query($db,$updC1)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC2= ("UPDATE `CaisseOut` SET `Type` = '".$this->type."' WHERE idCaisseOut =$this->idCaisseOut");
+            if(mysqli_query($db,$updC2)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC3= ("UPDATE `CaisseOut` SET `DatesOut` = '".$this->datesout."' WHERE idCaisseOut =$this->idCaisseOut");
+            if(mysqli_query($db,$updC3)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
     }
 
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     $autre = '';
-    if ($q !== "") {
-        $hint = $q;
-        $salaire = new CaisseOut($tabC[0], $tabC[1], $tabC[2], $tabC[3]);
-        $salaire->insererCaisseOut();
-        $autre = $salaire->message;
-        if( $salaire->message) {
-            $hint = $autre;
+    if (end($tabC) != 'update') {
+        if ($q !== "") {
+            $hint = $q;
+            $salaire = new CaisseOut($tabC[0], $tabC[1], $tabC[2], $tabC[3]);
+            $salaire->insererCaisseOut();
+            $autre = $salaire->message;
+            if( $salaire->message) {
+                $hint = $autre;
+            }
+           
         }
+    
+            $sucess = '<div class="alert alert-success" role="alert">
+            Insertion fait avec success
+        </div>';
+    
+        $error = '<div class="alert alert-danger" role="alert">
+        Erreur '.$autre.'
+        </div>';
+        echo $hint == $autre ? $error : $sucess;
         
-    }
-
-    $sucess = '<div class="alert alert-success" role="alert">
-    Insertion fait avec success
+    }else {
+        $idCaisse = $tabC[4];
+        if ($q !== "") {
+            $hint = $q;
+            $salaire = new CaisseOut($tabC[0], $tabC[1], $tabC[2], $tabC[3]);
+            $salaire->idCaisseOut = $idCaisse;
+            $salaire->updateCaisseOut();
+            $autre = $salaire->message;
+            if( $salaire->message) {
+                $hint = $autre;
+            }
+            
+        }
+        $sucess = '<div class="alert alert-success" role="alert">
+    Modification fait avec success
   </div>';
 
   $error = '<div class="alert alert-danger" role="alert">
   Erreur '.$autre.'
 </div>';
     echo $hint == $autre ? $error : $sucess;
-    
+    }
 
 ?>

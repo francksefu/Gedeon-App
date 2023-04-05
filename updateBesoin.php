@@ -77,6 +77,7 @@ function dataBesoin(){
                                 ?>
                             </datalist>
                     </div>
+                    
                     <div class="input-group mb-3 w-50 mx-auto d-block">
                         <span class="input-group-text w-50" id="dates">Dates de la depense*</span>
                         <input required type="date"  name="dates" id="datesDep" class="form-control w-50" placeholder="mettre la date" aria-label="Username" aria-describedby="nom" >
@@ -141,11 +142,12 @@ function dataBesoin(){
                       <p id="txtHint"></p>
                       <input type="hidden" value="update" id="typeFormulaire">
                       <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">modifier ce besoin</button>
-                     <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
-      </div>    
+                     
+                    </div>    
                 
             </div>
-            
+
+                
         </div>
     
     </main>

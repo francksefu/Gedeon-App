@@ -1,7 +1,7 @@
 <?php
 
     class Personnels {
-        private $idPersonnel;
+        public $idPersonnel;
         private $poste;
         private $nom;
         private $telephone;
@@ -28,31 +28,74 @@
                 $this->message = mysqli_error($db);
             }
         }
+        function updatePersonnel() {
+            include 'connexion.php';
+            $updC= ("UPDATE `Personnel` SET `Poste` = '".$this->poste."' WHERE idPersonnel =$this->idPersonnel");
+            if(mysqli_query($db,$updC)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+
+            $updC1= ("UPDATE `Personnel` SET `Nom` ='".$this->nom."' WHERE idPersonnel =$this->idPersonnel");
+            if(mysqli_query($db,$updC1)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC2= ("UPDATE `Personnel` SET `Telephone` = '".$this->telephone."' WHERE idPersonnel =$this->idPersonnel");
+            if(mysqli_query($db,$updC2)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
     }
 
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     
     $autre = '';
-    if ($q !== "") {
-        $hint = $q;
-        $tracteur = new Personnels($tabC[0], $tabC[1], $tabC[2]);
-        $tracteur->insererPersonnel();
-        $autre = $tracteur->message;
-        if( $tracteur->message) {
-            $hint = $autre;
+    if (end($tabC) != 'update') {
+        if ($q !== "") {
+            $hint = $q;
+            $tracteur = new Personnels($tabC[0], $tabC[1], $tabC[2]);
+            $tracteur->insererPersonnel();
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+            
         }
-        
+    
+        $sucess = '<div class="alert alert-success" role="alert">
+        Insertion fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+    </div>';
+        echo $hint == $autre ? $error : $sucess;
+    } else {
+        if ($q !== "") {
+            $hint = $q;
+            $tracteur = new Personnels($tabC[0], $tabC[1], $tabC[2]);
+            $tracteur->idPersonnel = $tabC[3];
+            $tracteur->updatePersonnel();
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+            
+        }
+    
+        $sucess = '<div class="alert alert-success" role="alert">
+        Modification fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+    </div>';
+        echo $hint == $autre ? $error : $sucess;
     }
-
-    $sucess = '<div class="alert alert-success" role="alert">
-    Insertion fait avec success
-  </div>';
-
-  $error = '<div class="alert alert-danger" role="alert">
-  Erreur '.$autre.'
-</div>';
-    echo $hint == $autre ? $error : $sucess;
+    
     
 
 ?>

@@ -39,10 +39,12 @@ function navbar() {
             Travail
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="champs.php">Liste des champs cultivé</a></li>
+            <li><a class="dropdown-item" href="champs.php">Liste des champs cultivé ou tours</a></li>
             <li><a class="dropdown-item" href="addChamps.php">Ajouter champs cultivé ou tours</a></li>
+            <li><a class="dropdown-item" href="updateChamps.php">Modifier champs cultivé ou tours</a></li>
             <li><a class="dropdown-item" href="ventes.php">Liste des ventes et interets</a></li>
             <li><a class="dropdown-item" href="addVentes.php">Ajoutez ventes</a></li>
+            <li><a class="dropdown-item" href="updateVentes.php">Modifier ventes</a></li>
           </ul>
       </li>
       <li class="nav-item pe-3 dropdown" >
@@ -72,8 +74,10 @@ function navbar() {
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="caisseOut.php">Listez les sorties dans caisse</a></li>
             <li><a class="dropdown-item" href="addCaisseout.php">Ajoutez sortie dans caisse</a></li>
+            <li><a class="dropdown-item" href="updateCaisseOut.php">Modifier sortie dans caisse</a></li>
             <li><a class="dropdown-item" href="caisseIn.php">Listez les entrer dans caisse</a></li>
             <li><a class="dropdown-item" href="addCaissein.php">Ajoutez entrer dans caisse</a></li>
+            <li><a class="dropdown-item" href="updateCaisseIn.php">Modifier entrer dans caisse</a></li>
           </ul>
       </li>
 

@@ -1,7 +1,7 @@
 <?php
 
     class Ventes {
-        private $idVentes;
+        public $idVentes;
         private $pA;
         private $pV;
         private $benefice;
@@ -34,31 +34,93 @@
                 $this->message = mysqli_error($db);
             }
         }
+
+        function updateVentes() {
+            include 'connexion.php';
+            $updC= ("UPDATE `Ventes` SET `PA` = $this->pA WHERE idVentes =$this->idVentes");
+            if(mysqli_query($db,$updC)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+
+            $updC1= ("UPDATE `Ventes` SET `PV` = $this->pV WHERE idVentes =$this->idVentes");
+            if(mysqli_query($db,$updC1)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC2= ("UPDATE `Ventes` SET `Benefice` = $this->benefice WHERE idVentes =$this->idVentes");
+            if(mysqli_query($db,$updC2)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC3= ("UPDATE `Ventes` SET `DatesVente` = '".$this->datesVentes."' WHERE idVentes =$this->idVentes");
+            if(mysqli_query($db,$updC3)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+
+            $updC4= ("UPDATE `Ventes` SET `NomProduit` = '".$this->nomProduit."' WHERE idVentes =$this->idVentes");
+            if(mysqli_query($db,$updC4)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+            $updC3= ("UPDATE `Ventes` SET `Commentaire` = '".$this->motif."' WHERE idVentes =$this->idVentes");
+            if(mysqli_query($db,$updC3)){echo"";}else{
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
     }
 
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     
     $autre = '';
-    if ($q !== "") {
-        $hint = $q;
-        $tracteur = new Ventes($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
-        $tracteur->insererVentes();
-        $autre = $tracteur->message;
-        if( $tracteur->message) {
-            $hint = $autre;
+    if (end($tabC) != 'update') {
+        if ($q !== "") {
+            $hint = $q;
+            $tracteur = new Ventes($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
+            $tracteur->insererVentes();
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+            
         }
-        
-    }
-
-    $sucess = '<div class="alert alert-success" role="alert">
-    Insertion fait avec success
-  </div>';
-
-  $error = '<div class="alert alert-danger" role="alert">
-  Erreur '.$autre.'
-</div>';
-    echo $hint == $autre ? $error : $sucess;
     
+        $sucess = '<div class="alert alert-success" role="alert">
+        Insertion fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+     </div>';
+        echo $hint == $autre ? $error : $sucess;
+    
+    } else {
+        if ($q !== "") {
+            $hint = $q;
+            $tracteur = new Ventes($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
+            $tracteur->idVentes = $tabC[6];
+            $tracteur->updateVentes();
+            
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+            
+        }
+    
+        $sucess = '<div class="alert alert-success" role="alert">
+        Modification fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+    </div>';
+        echo $hint == $autre ? $error : $sucess;
+    
+    }
+        
 
 ?>
