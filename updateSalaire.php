@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="bg-light">
+<body class="back">
 <?php
   include 'connexion.php';
   function datachamps(){
@@ -56,16 +56,39 @@
    }else{echo "Une erreur s est produite ";} 
   }
 
+  function dataSalaire(){
+    include 'connexion.php';
+    $sql = ("SELECT idSalaire, Salaire.motif, NomClient, Poste, DatesLocation, TypeClient, Nom, Salaire, DatesDit, Personnel.idPersonnel, Champs_cultive.idChamps FROM Salaire, Champs_cultive, Personnel WHERE (Salaire.idChamp = Champs_cultive.idChamps) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idSalaire desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idSalaire"].":: Nom travailleur ::".$row["Nom"].":: Salaire ::".$row["Salaire"].":: Nom du Client = ::".$row["NomClient"].":: Dates location =::".$row["DatesLocation"].":: Type de client = ::".$row["TypeClient"].":: idPersonnel = ::".$row["idPersonnel"].":: idChamps = ::".$row["idChamps"].":: hectares = ::".$row["NbreHectares"]."::dates dit ::".$row["DatesDit"].":: poste ::".$row["Poste"]."::motif ::".$row["motif"]."'>client: ".$row["NomClient"]." :personnel ".$row["Nom"]." : salaire ".$row["Salaire"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}
+
+}
 ?>
 
     <main>
     
         <div class="container bg-transparent pt-5">
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Add Salaire</h2>
+                <h2 class="p-2">Modifier Salaire</h2>
                 <hr class="w-auto">
                 <div class="ps-1 pe-1 pt-3 pb-3">
-                <input type="hidden" id="identifiantM" value="">
+                <div class="input-group mb-3  mx-auto d-block">
+                        <span class="input-group-text " id="id">Identifiant*</span>
+                        <input required type="text" list="dataBesoin" id="identifiantM" class="form-control w-50" placeholder="entrer identifiant" aria-label="Username" aria-describedby="nom" >
+                            <datalist id="dataBesoin">
+                                <?php 
+                                    dataSalaire();
+
+                                ?>
+                            </datalist>
+                    </div>
                     <div class="input-group mb-3 w-50 mx-auto d-block">
                         <span class="input-group-text w-50" id="dates">Dates *</span>
                         <input required type="date"  name="dates" id="datesDit" class="form-control w-50" placeholder="mettre la date" aria-label="Username" aria-describedby="nom" value="<?php $d = strtotime("today"); echo date('Y-m-d',$d); ?>">
@@ -122,8 +145,8 @@
                       </div>
 
                       <p id="txtHint"></p>
-                      <input type="hidden" value="add" id="typeFormulaire">
-                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez</button>
+                      <input type="hidden" value="update" id="typeFormulaire">
+                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Modifier</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
       </div>    
                 

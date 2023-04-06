@@ -1,5 +1,6 @@
 // take all value inside inputs
 
+const identifiantM = document.querySelector('#identifiantM');
 const datespaye = document.querySelector('#datesPaye');
 const salaireConvenu = document.querySelector('#salaireConvenu');
 const montant = document.querySelector('#montant');
@@ -14,6 +15,19 @@ const compareFeedback = `<div class='alert alert-success' role='alert'>
 Insertion fait avec success
 </div>`; 
 
+const type = document.querySelector('#typeFormulaire');
+let idPaiement;
+if (type.value === 'update') {
+    identifiantM.addEventListener('change', () => {
+      const tabValeur = identifiantM.value.split('::');
+      idPaiement = tabValeur[1];
+      datespaye.value = tabValeur[11];
+      salaireConvenu.value = "ID :"+tabValeur[15]+": Nom du travailleur :"+tabValeur[3]+": Salaire convenu :"+tabValeur[5]+":$ en date du = :"+tabValeur[7]+": pour le client = : voir dans lister salaire"
+      montant.value = tabValeur[9];
+      motif.value = tabValeur[13];
+    })
+    
+  }
 const messageVide = 'Veuillez remplir ce champs svp'
 const messageComplete = valeur => {
     valeur.textContent = messageVide;
@@ -57,10 +71,17 @@ btn.addEventListener('click', () => {
       }
   // prendre uniquement les id
   const idSalaire = salaireConvenu.value.split(':');
-  const prend = idSalaire[1]+"::"+montant.value+"::"+datespaye.value+"::"+motif.value;
+  let prend;
+  if (type.value == "update") {
+    prend = idSalaire[1]+"::"+montant.value+"::"+datespaye.value+"::"+motif.value+"::"+idPaiement+"::update";
+  } else {
+    prend = idSalaire[1]+"::"+montant.value+"::"+datespaye.value+"::"+motif.value;
+  }
+  
   showHint(prend);
   
     salaireConvenu.value =""; 
     montant.value = "";
     motif.value = "";
+    identifiantM.value = "";
 });

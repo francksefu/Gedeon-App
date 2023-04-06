@@ -39,7 +39,7 @@ header {
   background-color: beige;
 }
 
-.cache {
+#cache {
   display: none;
 }
 

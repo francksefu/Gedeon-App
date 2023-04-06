@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="bg-light">
+<body class="back">
 <?php
   include 'connexion.php';
   function dataSalaire(){
@@ -41,17 +41,39 @@
    }else{echo "Une erreur s est produite ";}
 
   }
+
+  function dataPaiement() {
+    include 'connexion.php';
+    $sql = ("SELECT idMontant, Nom, Salaire, DatesDit, MontantPaye, DatesPaye, Commentaire, Salaire.idSalaire FROM MontantPaye, Salaire , Personnel WHERE (MontantPaye.idSalaire = Salaire.idSalaire) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idMontant desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idMontant"].":: Nom ::".$row["Nom"].":: Salaire convenu ::".$row["Salaire"]."::$ en date du = ::".$row["DatesDit"].":: montant = ::".$row["MontantPaye"].":: dates ::".$row["DatesPaye"].":: motif ::".$row["Commentaire"].":: idSalaire :: ".$row["idSalaire"]."'>".$row["Nom"]." :salaire ".$row["Salaire"]." : montant ".$row["MontantPaye"]."</option>"; 
+        }
+                
+    }else{echo "Une erreur s est produite ";}
+  }
 ?>
 
     <main>
     
         <div class="container bg-transparent pt-5">
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Add Paiements</h2>
+                <h2 class="p-2">Modifier Paiements</h2>
                 <hr class="w-auto">
                 <div class="ps-1 pe-1 pt-3 pb-3">
-                <input type="hidden" id="identifiantM" value="">
-                
+                <div class="input-group mb-3  mx-auto d-block">
+                        <span class="input-group-text " id="id">Identifiant*</span>
+                        <input required type="text" list="dataBesoin" id="identifiantM" class="form-control w-50" placeholder="entrer identifiant" aria-label="Username" aria-describedby="nom" >
+                            <datalist id="dataBesoin">
+                                <?php 
+                                    dataPaiement();
+
+                                ?>
+                            </datalist>
+                    </div>
                 <!--<form class="ps-1 pe-1 pt-3 pb-3" method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
                     <div class="input-group mb-3 w-50 mx-auto d-block">
                         <span class="input-group-text w-50" id="dates">Dates *</span>
@@ -92,8 +114,8 @@
                       </div>
 
                       <p id="txtHint"></p>
-                      <input type="hidden" value="add" id="typeFormulaire">
-                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez</button>
+                      <input type="hidden" value="update" id="typeFormulaire">
+                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Modifiez</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
       </div>    
                 

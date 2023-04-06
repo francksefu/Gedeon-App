@@ -23,18 +23,41 @@
     <script defer src="./jsfile/takeDepot.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
+<?php
+function dataDepot(){
+    include 'connexion.php';
+    $sql = ("SELECT * FROM Depot order by idDepot desc ");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idDepot"].":: Materiels ::".$row["Materiels"].":: QuantiteStock ::".$row["QuantiteStock"].":: valeur = ::".$row["Valeur"].":: motif =::".$row["Commentaire"].":: Dates d acquisition = ::".$row["DatesAcquis"]."'>materiel: ".$row["Materiels"]." :stock ".$row["QuantiteStock"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}
 
-<body class="bg-light">
+}
+?>
+<body class="back">
 
     <main>
     
         <div class="container bg-transparent pt-5">
             <div class=" p-3 mb-5 border border-1 rounded mt-5" id="sa">
-                <h2 class="p-2">Add dans depot</h2>
+                <h2 class="p-2">Modifier dans depot</h2>
                 <hr class="w-auto">
                 <div class="ps-1 pe-1 pt-3 pb-3">
-                <input type="hidden" id="identifiantM" value="">
-                
+                <div class="input-group mb-3  mx-auto d-block">
+                        <span class="input-group-text " id="id">Identifiant*</span>
+                        <input required type="text" list="dataBesoin" id="identifiantM" class="form-control w-50" placeholder="entrer identifiant" aria-label="Username" aria-describedby="nom" >
+                            <datalist id="dataBesoin">
+                                <?php 
+                                    dataDepot();
+
+                                ?>
+                            </datalist>
+                    </div>
                 <!--<form class="ps-1 pe-1 pt-3 pb-3" method= "POST" action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">-->
                     <div class="input-group mb-3 w-50 mx-auto d-block">
                         <span class="input-group-text w-50" id="dates">Dates d acquisition *</span>
@@ -76,8 +99,8 @@
                       </div>
 
                       <p id="txtHint"></p>
-                      <input type="hidden" value="add" id="typeFormulaire">
-                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Ajoutez</button>
+                      <input type="hidden" value="update" id="typeFormulaire">
+                      <button id='envoie' class="btn btn-primary p-3 fs-4 mt-4 w-25">Modifiez</button>
                      <!-- <p id='envoie' class=" bg-primary p-2 mt-4">Envoie</p>-->
                     </div>    
                 
