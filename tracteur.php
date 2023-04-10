@@ -24,10 +24,26 @@
     <script defer src="./jsfile/navbar.js"></script>
     <script defer src="./jsfile/jquery-3.6.1.min.js"></script>
     <script defer src="./jsfile/produit.js"></script>
-
+    <script defer src="./jsfile/supprime.js"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="modifier.css">
 </head>
+<?php
+function dataBesoin(){
+    include 'connexion.php';
+    $sql = ("SELECT idDepense,Tracteur.idChamps, Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idDepense"].":: Nom client ::".$row["NomClient"].":: Type  ::".$row["TypeClient"].":: DatesLocation ::".$row["DatesLocation"].":: cout_M ::".$row["Cout_Mazout"].":: cout_P ::".$row["Cout_Pannes"].":: montant ::".$row["MontantDepense"].":: Motif ::".$row["Motif"].":: tracteur ::".$row["NomTracteur"].":: Dates dep ::".$row["DatesDep"].":: champ ::".$row["idChamps"]."'>".$row["NomClient"]." : ".$row["DatesLocation"]." : ".$row["TypeClient"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}  
+
+}
+?>
 <body class="bg-light">
    
     <main>
@@ -59,20 +75,28 @@
                 </div>
             </div>
             <div class="row supprime mt-3">
-                <div class="col-md-5">
+                <div class="col-md-2">
                     
                 </div>
-                <div class="input-group w-50 col-md-5">
+                <div class="input-group col-md-10">
                     <span class="input-group-text">supprimer : </span>
-                    <input required type="float" name="montant" id="montant" class="form-control" placeholder="metez quelque chose dont vous vous rappeler pour le supprimer" aria-label="Amount (to the nearest cdf)">
+                    <input required type="text" name="montant" id="supprime" list="dataBesoin" class="form-control" placeholder="metez quelque chose dont vous vous rappeler pour le supprimer" aria-label="Amount (to the nearest cdf)">
+                      <datalist id="dataBesoin">
+                         <?php 
+                            dataBesoin();
+
+                        ?>
+                      </datalist>
                     <span class="input-group-text pointe">&cross;</span>
-                    <span class="input-group-text">
+                    <span class="input-group-text pointe" id="btn">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                       </svg>
                     </span>
+                    <small id="txtHint"></small>
                 </div>
+                <input type="hidden" value="besoin" id="type" >
             </div>
         </div>
     
