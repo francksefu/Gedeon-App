@@ -67,7 +67,7 @@ btn.addEventListener('click', () => {
   if (typeForm.value == 'update') {
     prend = montant.value+"::"+motif.value+"::"+type.value+"::"+datesout.value+"::"+idCaisse+"::update";
   } else {
-    prend = montant.value+"::"+motif.value+"::"+type.value+"::"+datesout.value;
+    prend = montant.value+"::"+motif.value+"::"+type.value+"::"+datesout.value+"::add";
   }
   
   showHint(prend);

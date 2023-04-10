@@ -86,7 +86,7 @@
 
         function deleteBesoin() {
             include 'connexion.php';
-            $delete = ("DELETE FROM Tracteur WHERE idDepense = $this->idDepense");
+            $delete = ("DELETE FROM Tracteur WHERE idDepense =$this->idDepense");
             if (mysqli_query($db, $delete)){echo"";} else {
                 $this->message = mysqli_error($db);
                 return;
@@ -122,7 +122,7 @@
     }
     
     if(end($tabC) =='delete'){
-        $idDepense = $tabC[0];
+        
         if ($q !== "") {
             $hint = $q;
             $tracteur = new Tracteur(1,2,3,4,5,6,7,8);
@@ -135,7 +135,7 @@
             
         }
         $sucess = '<div class="alert alert-success" role="alert">
-    Modification fait avec success
+    Suppression fait avec success, recharger la page pour voir la ligne disparaitre
   </div>';
 
   $error = '<div class="alert alert-danger" role="alert">

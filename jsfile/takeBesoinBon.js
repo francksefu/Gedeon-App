@@ -85,7 +85,7 @@ btn.addEventListener('click', () => {
       if (type.value == 'update') {
         prend = idC[idC.length - 1]+"::"+mazoutValeur+"::"+pannesValeur+"::"+montantValeur+"::"+motif.value+"::"+nomTracteur.value+"::"+datesDep.value+"::"+idDepense+"::update";
       } else {
-        prend = idC[idC.length - 1]+"::"+mazoutValeur+"::"+pannesValeur+"::"+montantValeur+"::"+motif.value+"::"+nomTracteur.value+"::"+datesDep.value;
+        prend = idC[idC.length - 1]+"::"+mazoutValeur+"::"+pannesValeur+"::"+montantValeur+"::"+motif.value+"::"+nomTracteur.value+"::"+datesDep.value+"::add";
       }
     showHint(prend);
     

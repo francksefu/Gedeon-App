@@ -6,7 +6,4 @@ $(document).ready(function(){
     });
   });
 
-  $("#hello").click(function(){
-    $("#cache").slideToggle();
-})
 });

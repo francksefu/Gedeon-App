@@ -46,3 +46,8 @@ header {
 .pointe {
   cursor: pointer;
 }
+
+.montre-moi {
+  display: none;
+}
+
