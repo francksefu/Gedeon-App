@@ -69,13 +69,22 @@
                 return;
             }
         }
+
+        function deleteChamps() {
+            include 'connexion.php';
+            $delete = ("DELETE FROM Champs_cultive WHERE idChamps =$this->idChamps");
+            if (mysqli_query($db, $delete)){echo"";} else {
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
     }
     $idChamps;
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     
     $autre = '';
-    if (end($tabC) != 'update') {
+    if (end($tabC) == 'add') {
         if ($q !== "") {
             $hint = $q;
             $tracteur = new Champs($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
@@ -86,7 +95,7 @@
             }
             
         }
-    
+   
         $sucess = '<div class="alert alert-success" role="alert">
         Insertion fait avec success
       </div>';
@@ -95,7 +104,8 @@
       Erreur '.$autre.'
       </div>';
         echo $hint == $autre ? $error : $sucess;
-    } else {
+    }
+    if(end($tabC) == 'update') {
         if ($q !== "") {
             $idChamps = $tabC[6];
             $hint = $q;
@@ -106,7 +116,7 @@
             if( $tracteur->message) {
                 $hint = $autre;
             }
-           
+          
         }
         $sucess = '<div class="alert alert-success" role="alert">
         Modification fait avec success
@@ -118,5 +128,27 @@
         echo $hint == $autre ? $error : $sucess;
     }
     
+    if(end($tabC) == 'delete') {
+        if ($q !== "") {
+            $idChamps = $tabC[6];
+            $hint = $q;
+            $tracteur = new Champs(1, 2, 3, 4, 5, 6);
+            $tracteur->idChamps = $tabC[0];
+            $tracteur->deleteChamps();
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+           
+        }
+        $sucess = '<div class="alert alert-success" role="alert">
+        suppression fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+      </div>';
+        echo $hint == $autre ? $error : $sucess;
+    }
 
 ?>

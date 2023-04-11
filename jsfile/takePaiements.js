@@ -75,7 +75,7 @@ btn.addEventListener('click', () => {
   if (type.value == "update") {
     prend = idSalaire[1]+"::"+montant.value+"::"+datespaye.value+"::"+motif.value+"::"+idPaiement+"::update";
   } else {
-    prend = idSalaire[1]+"::"+montant.value+"::"+datespaye.value+"::"+motif.value;
+    prend = idSalaire[1]+"::"+montant.value+"::"+datespaye.value+"::"+motif.value+"::add";
   }
   
   showHint(prend);

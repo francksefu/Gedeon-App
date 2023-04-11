@@ -87,7 +87,7 @@ btn.addEventListener('click', () => {
   if(typeForm.value === 'update') {
     prend = hectareTour.value+"::"+montant.value+"::"+nomClient.value+"::"+datesLocation.value+"::"+typeClient.value+"::"+motif.value+"::"+idChamps+"::update";
   } else {
-    prend = hectareTour.value+"::"+montant.value+"::"+nomClient.value+"::"+datesLocation.value+"::"+typeClient.value+"::"+motif.value;
+    prend = hectareTour.value+"::"+montant.value+"::"+nomClient.value+"::"+datesLocation.value+"::"+typeClient.value+"::"+motif.value+"::add";
   }
   showHint(prend);
   

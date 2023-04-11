@@ -49,5 +49,29 @@ btn.addEventListener('click', () => {
     if(fichier.value === 'caisseout') {
       showHint(input.value.split('::')[1]+"::delete", "classCaisseout.php?q=")
     }
+
+    if(fichier.value === 'champs') {
+      showHint(input.value.split('::')[1]+"::delete", "classChamps.php?q=")
+    }
+
+    if(fichier.value === 'depot') {
+      showHint(input.value.split('::')[1]+"::delete", "classDepot.php?q=")
+    }
+
+    if(fichier.value === 'paiement') {
+      showHint(input.value.split('::')[1]+"::delete", "classPaiements.php?q=")
+    }
+
+    if(fichier.value === 'personnel') {
+      showHint(input.value.split('::')[1]+"::delete", "classPersonnels.php?q=")
+    }
+
+    if(fichier.value === 'salaire') {
+      showHint(input.value.split('::')[1]+"::delete", "classSalaire.php?q=")
+    }
+
+    if(fichier.value === 'ventes') {
+      showHint(input.value.split('::')[1]+"::delete", "classVentes.php?q=")
+    }
     supprime.value = "";
 });

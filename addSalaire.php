@@ -106,7 +106,7 @@
                             <div class="input-group ">
                                 <span class="input-group-text">Salaire*</span>
                                 <input required type="float" id="salaire" name="CM" class="form-control" placeholder="entrer salaire" aria-label="Amount (to the nearest cdf)">
-                                <span class="input-group-text">FC</span>
+                                <span class="input-group-text">$</span>
                             </div>
                             <small id="salaireVide"></small>
                         </div>

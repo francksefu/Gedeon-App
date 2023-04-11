@@ -84,7 +84,7 @@ btn.addEventListener('click', () => {
   if (type.value === 'update') {
     prend = idC[idC.length - 1]+"::"+idP[idP.length - 1]+"::"+salaire.value+"::"+datesDit.value+"::"+motif.value+"::"+idSalaire+"::update";
   } else {
-    prend = idC[idC.length - 1]+"::"+idP[idP.length - 1]+"::"+salaire.value+"::"+datesDit.value+"::"+motif.value;
+    prend = idC[idC.length - 1]+"::"+idP[idP.length - 1]+"::"+salaire.value+"::"+datesDit.value+"::"+motif.value+"::add";
   }
  
   showHint(prend);

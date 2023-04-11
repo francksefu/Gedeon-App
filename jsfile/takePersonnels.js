@@ -77,7 +77,7 @@ btn.addEventListener('click', () => {
   if (type.value == 'update') {
     prend = poste.value+"::"+nomPersonnel.value+"::"+telephone.value+"::"+idPersonnel+"::update";
   } else {
-    prend = poste.value+"::"+nomPersonnel.value+"::"+telephone.value;
+    prend = poste.value+"::"+nomPersonnel.value+"::"+telephone.value+"::add";
   }
 
   showHint(prend);

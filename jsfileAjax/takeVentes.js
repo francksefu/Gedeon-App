@@ -91,7 +91,7 @@ btn.addEventListener('click', () => {
       if (typeForm.value === 'update') {
         prend = pA.value+"::"+pV.value+"::"+(pV.value - pA.value)+"::"+datesVente.value+"::"+nomProduit.value+"::"+motif.value+"::"+idVentes+"::update";
       } else {
-        prend = pA.value+"::"+pV.value+"::"+(pV.value - pA.value)+"::"+datesVente.value+"::"+nomProduit.value+"::"+motif.value;
+        prend = pA.value+"::"+pV.value+"::"+(pV.value - pA.value)+"::"+datesVente.value+"::"+nomProduit.value+"::"+motif.value+"::add";
       }
   
   showHint(prend);

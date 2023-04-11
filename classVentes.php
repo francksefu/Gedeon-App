@@ -70,13 +70,22 @@
                 return;
             }
         }
+
+        function deleteVentes() {
+            include 'connexion.php';
+            $delete = ("DELETE FROM Ventes WHERE idVentes =$this->idVentes");
+            if (mysqli_query($db, $delete)){echo"";} else {
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
     }
 
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     
     $autre = '';
-    if (end($tabC) != 'update') {
+    if (end($tabC) == 'add') {
         if ($q !== "") {
             $hint = $q;
             $tracteur = new Ventes($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
@@ -97,7 +106,8 @@
      </div>';
         echo $hint == $autre ? $error : $sucess;
     
-    } else {
+    } 
+    if (end($tabC) == 'update') {
         if ($q !== "") {
             $hint = $q;
             $tracteur = new Ventes($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4], $tabC[5]);
@@ -121,6 +131,30 @@
         echo $hint == $autre ? $error : $sucess;
     
     }
-        
+    
+    if (end($tabC) == 'delete') {
+        if ($q !== "") {
+            $hint = $q;
+            $tracteur = new Ventes(0, 1, 2, 3, 4, 5);
+            $tracteur->idVentes = $tabC[0];
+            $tracteur->deleteVentes();
+            
+            $autre = $tracteur->message;
+            if( $tracteur->message) {
+                $hint = $autre;
+            }
+            
+        }
+    
+        $sucess = '<div class="alert alert-success" role="alert">
+        suppression fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+    </div>';
+        echo $hint == $autre ? $error : $sucess;
+    
+    }
 
 ?>

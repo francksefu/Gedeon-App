@@ -60,12 +60,20 @@
                 return;
             }
         }
+        function deleteSalaire() {
+            include 'connexion.php';
+            $delete = ("DELETE FROM Salaire WHERE idSalaire =$this->idSalaire");
+            if (mysqli_query($db, $delete)){echo"";} else {
+                $this->message = mysqli_error($db);
+                return;
+            }
+        }
     }
 
     $q = $_REQUEST["q"];
     $tabC = explode("::", $q);
     $autre = '';
-    if (end($tabC) != 'update') {
+    if (end($tabC) == 'add') {
         if ($q !== "") {
             $hint = $q;
             $salaire = new Salaire($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4]);
@@ -86,7 +94,8 @@
       </div>';
         echo $hint == $autre ? $error : $sucess;
         
-    } else {
+    } 
+    if (end($tabC) == 'update') {
         if ($q !== "") {
             $hint = $q;
             $salaire = new Salaire($tabC[0], $tabC[1], $tabC[2], $tabC[3], $tabC[4]);
@@ -109,6 +118,29 @@
         echo $hint == $autre ? $error : $sucess;
         
     }
+   
+    if (end($tabC) == 'delete') {
+        if ($q !== "") {
+            $hint = $q;
+            $salaire = new Salaire(0,1,2,3,4);
+            $salaire->idSalaire = $tabC[0];
+            $salaire->deleteSalaire();
+            $autre = $salaire->message;
+            if( $salaire->message) {
+                $hint = $autre;
+            }
+            
+        }
     
+        $sucess = '<div class="alert alert-success" role="alert">
+        Suppression fait avec success
+      </div>';
+    
+      $error = '<div class="alert alert-danger" role="alert">
+      Erreur '.$autre.'
+    </div>';
+        echo $hint == $autre ? $error : $sucess;
+        
+    }
 
 ?>

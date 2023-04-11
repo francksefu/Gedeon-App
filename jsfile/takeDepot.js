@@ -84,7 +84,7 @@ btn.addEventListener('click', () => {
       if (type.value === 'update') {
         prend = materiels.value+"::"+quantite.value+"::"+valeur.value+"::"+motif.value+"::"+datesAcquis.value+"::"+idDepot+"::update";
       } else {
-        prend = materiels.value+"::"+quantite.value+"::"+valeur.value+"::"+motif.value+"::"+datesAcquis.value;
+        prend = materiels.value+"::"+quantite.value+"::"+valeur.value+"::"+motif.value+"::"+datesAcquis.value+"::add";
       }
   
   showHint(prend);
