@@ -1,5 +1,5 @@
 // take all value inside inputs
-
+const identifiantM = document.querySelector('#identifiantM')
 const infoChamps = document.querySelector('#nomChamps');
 const mazout = document.querySelector('#cout_Mazout');
 const pannes = document.querySelector('#cout_Pannes');
@@ -14,7 +14,13 @@ let feedback = '';
 const compareFeedback = `<div class='alert alert-success' role='alert'>
 Insertion fait avec success
 </div>`;
-
+const type = document.querySelector('#typeFormulaire');
+//const typeFormulaire = document.querySelector('#typeFormulaire');
+if (type.value === 'update') {
+  const tabValeur = identifiantM.value.split('::');
+  datesDep.value = tabValeur[tabValeur.length - 1];
+  montant.value = tabValeur[13];
+}
 // take juste id for champs 
 
 
@@ -31,6 +37,9 @@ const calculSomme = () => {
   if (montantC == '') {montantC = 0;}  
   return mazoutC*1 + pannesC*1 + montantC*1;
 }
+
+  
+
 
 // Use ajax to insere it in the BD (communication with CRUD file)
 
@@ -50,6 +59,7 @@ function showHint(str) {
     }
   }
 btn.addEventListener('click', () => {
+  
   if(infoChamps.value == ''){
     idChampsVide.textContent = messageVide;
     idChampsVide.style.color = 'red';
@@ -63,7 +73,10 @@ btn.addEventListener('click', () => {
   if (montantValeur == '') {montantValeur = 0;}
   
   const idC = infoChamps.value.split(':');
-  const prend = idC[idC.length - 1]+"::"+mazoutValeur+"::"+pannesValeur+"::"+montantValeur+"::"+motif.value+"::"+nomTracteur.value+"::"+datesDep.value;
+  let prend ='';
+  
+    prend = idC[idC.length - 1]+"::"+mazoutValeur+"::"+pannesValeur+"::"+montantValeur+"::"+motif.value+"::"+nomTracteur.value+"::"+datesDep.value;
+  
   showHint(prend);
   
     infoChamps.value =""; 

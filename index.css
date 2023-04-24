@@ -31,14 +31,29 @@ td {
     text-align: center;
 }
 
-/*input, span, select, label {
-    z-index: -1;
+header {
+   z-index: 3;
 }
 
-.moinClaire {
-    z-index: -3;
-}*/
-header {
-    z-index: 3;
+.back {
+  background-color: beige;
+}
+
+#cache {
+  display: none;
+}
+
+.pointe {
+  cursor: pointer;
+}
+
+.montre-moi {
+  display: none;
+}
+
+.fixons {
+  position: fixed;
+  top: 30%;
+  right: 20%;
 }
 

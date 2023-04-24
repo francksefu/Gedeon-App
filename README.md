@@ -1,3 +1,3 @@
 # Gedeon-App
-This application is a web application designed to help get a better idea of ​​your business, a business that affects the loan of tractors and a small business and manage the staff who work in these 2 small activities. stack : JavaScript, Bootstrap, HTML/CSS, PHP
+This application is a web application designed to help get a better idea of ​​your business, a business that affects the loan of tractors and a small business and manage the staff who work in these 2 small activities. stack : JavaScript, Bootstrap, HTML/CSS, PHP, mySQL<br>
 Good design of this read me file comming soon ...

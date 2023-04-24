@@ -15,16 +15,34 @@
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap-utilities.css">
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap-utilities.rtl.css">
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap-utilities.rtl.min.css">
-    
+   
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.js"></script>
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.js"></script>
     <script defer src="bootstrap-5.0.2-dist/js/bootstrap.esm.min.js"></script>
     <script defer  src="bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script defer src="./jsfile/navbar.js"></script>
-   
+    <script defer src="./jsfile/jquery-3.6.1.min.js"></script>
+    <script defer src="./jsfile/produit.js"></script>
+    <script defer src="./jsfile/supprime.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
+<?php
+  function dataCaisseIn(){
+    include 'connexion.php';
+    $sql = ("SELECT * FROM CaisseInput order by idCaisseIn desc");
+    $result = mysqli_query($db, $sql);
+            
+    if(mysqli_num_rows($result)>0){
+                        
+        while($row= mysqli_fetch_assoc($result)){
+            echo"<option value='ID ::".$row["idCaisseIn"].":: Montant entrer ::".$row["MontantIn"].":: Motif  ::".$row["Commentaire"].":: Type ::".$row["Type"].":: Dates ::".$row["DatesIn"]."'>montant = ".$row["MontantIn"]." commentaire : ".$row["Commentaire"]."</option>"; 
+        }
+                
+   }else{echo "Une erreur s est produite ";}  
+
+  }
+?>
 <body class="bg-light">
    
     <main>
@@ -40,7 +58,7 @@
                 
                 <div class="col-md-3 bg-transparent pt-5">
                     <p class="text-center">
-                        <a href="addVentes.html" class="btn btn-primary p-2">&plus; Ajoutez entrer</a>
+                        <a href="addCaissein.php" class="btn btn-primary p-2">&plus; Ajoutez entrer</a>
                     </p>
                 </div>
     
@@ -60,9 +78,28 @@
                 </div>
                 <div class="input-group w-50 col-md-5">
                     <span class="input-group-text">Search: </span>
-                    <input type="text" class="form-control" placeholder="Entrer un detail dont vous vous sur un utilisateur">
+                    <input type="text" id="input" class="form-control search" placeholder="Entrer un detail dont vous vous sur un utilisateur">
                 </div>
             </div>
+            <div class="input-group mt-3 col-md-10 montre-moi">
+                    <span class="input-group-text">supprimer : </span>
+                    <input type="text" id="supprimons" list="dataBesoin" class="form-control" placeholder="metez quelque chose dont vous vous rappeler pour le supprimer" >
+                      <datalist id="dataBesoin">
+                         <?php 
+                            dataCaisseIn();
+
+                        ?>
+                      </datalist>
+                    <span class="input-group-text pointe" id="cross">&cross;</span>
+                    <span class="input-group-text pointe" id="btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                    </span>
+                </div>
+                <small id="txtHint"></small>
+                <input type="hidden" value="caisseout" id="type" >
         </div>
     
         <div class="container-fluid pt-5 bg-transparent">
@@ -72,7 +109,7 @@
                 $reqSql= ("SELECT * FROM CaisseInput order by idCaisseIn desc ");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
-                    echo '<table class="table border border-1">
+                    echo '<table id="table" class="table border border-1">
                     <thead class="bg-secondary text-white">
                     <tr>
                         <th>Montant entrer</th>
@@ -93,7 +130,7 @@
                     <td >
                         <div class="d-flex flex-row justify-content-center">
                             
-                            <div class="p-2 m-2 bg-danger text-white rounded-3">
+                            <div class="p-2 m-2 bg-danger text-white rounded-3" id="del">
                                 <a href="#" class="text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
