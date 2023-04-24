@@ -51,3 +51,9 @@ header {
   display: none;
 }
 
+.fixons {
+  position: fixed;
+  top: 30%;
+  right: 20%;
+}
+
