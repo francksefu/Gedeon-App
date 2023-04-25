@@ -51,7 +51,7 @@ header {
   display: none;
 }
 
-.fixons {
+form.fixons {
   position: fixed;
   top: 30%;
   right: 20%;
