@@ -98,14 +98,14 @@ function dataSalaire(){
         <?php
                 include 'connexion.php';
                         
-                $reqSql= ("SELECT idSalaire, NomClient, DatesLocation, TypeClient, Nom, Salaire, DatesDit FROM Salaire, Champs_cultive, Personnel WHERE (Salaire.idChamp = Champs_cultive.idChamps) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idSalaire desc");
+                $reqSql= ("SELECT idSalaire, NomClient, DatesLocation, TypeClient, Nom, Salaire, DatesDit, idChamp FROM Salaire, Champs_cultive, Personnel WHERE (Salaire.idChamp = Champs_cultive.idChamps) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idSalaire desc");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
                     echo '<table class="table border border-1">
                     <thead class="bg-secondary text-white">
                     <tr>
                         <th>Identifiant</th>
-                        <th>Nom client</th>
+                        <th>Nom client + ID champs</th>
                         <th>Date location</th>
                         <th>Type</th>
                         <th>Nom travailleur</th>
@@ -119,7 +119,7 @@ function dataSalaire(){
                             echo'
                             <tr>
                     <td>'.$row["idSalaire"].'</td>
-                    <td>'.$row["NomClient"].'</td>
+                    <td>'.$row["idChamp"].' '.$row["NomClient"].'</td>
                     <td>'.$row["DatesLocation"].'</td>
                     <td>'.$row["TypeClient"].'</td>
                     <td>'.$row["Nom"].'</td>
@@ -127,7 +127,7 @@ function dataSalaire(){
                     <td>'.$row["DatesDit"].'</td>
                     <td >
                         <div class="d-flex flex-row justify-content-center">
-                            
+                           
                             <div class="p-2 m-2 bg-danger text-white rounded-3" id="del">
                                 <a href="#" class="text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

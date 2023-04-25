@@ -66,7 +66,7 @@ butBesoin2dates.addEventListener('click',() => {
 
 butPaiementIdentifiant.addEventListener('click',() => {
   const phrase = 'rechercher les paiements par identifiant champs, choississez juste le champs et l on vous montrera tous les besoins qui y sont lie'
-  complete(phrase, 'identifiant', 'dataPersonnel', 'paieId');
+  complete(phrase, 'identifiant', 'dataChamps', 'paieId');
 });
 
 butPaiement2dates.addEventListener('click',() => {

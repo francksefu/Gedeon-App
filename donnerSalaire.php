@@ -96,7 +96,7 @@ function dataPaiement() {
         <?php
                 include 'connexion.php';
                         
-                $reqSql= ("SELECT Nom, Salaire, DatesDit, MontantPaye, DatesPaye, Commentaire FROM MontantPaye, Salaire , Personnel WHERE (MontantPaye.idSalaire = Salaire.idSalaire) and (Salaire.idPersonnel = Personnel.idPersonnel) order by idMontant desc");
+                $reqSql= ("SELECT Nom, Salaire, DatesDit, MontantPaye, DatesPaye, Commentaire, idChamp, NomClient FROM MontantPaye, Salaire , Personnel, Champs_cultive WHERE (MontantPaye.idSalaire = Salaire.idSalaire) and (Salaire.idPersonnel = Personnel.idPersonnel) and ( Salaire.idChamp = Champs_cultive.idChamps )order by idMontant desc");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
                     echo '<table class="table border border-1">
@@ -108,6 +108,7 @@ function dataPaiement() {
                         <th>Montant payé</th>
                         <th>Commentaire</th>
                         <th>Dates du paiement</th>
+                        <th>Nom du client + ID Champs</th>
                         <th>Action</th>
                     </tr>
                     </thead>';
@@ -121,9 +122,10 @@ function dataPaiement() {
                     <td>'.$row["MontantPaye"].'</td>
                     <td>'.$row["Commentaire"].'</td>
                     <td>'.$row["DatesPaye"].'</td>
+                    <td>'.$row["idChamp"].' '.$row["NomClient"].'</td>
                     <td >
                         <div class="d-flex flex-row justify-content-center">
-                            
+                           
                             <div class="p-2 m-2 bg-danger text-white rounded-3" id="del">
                                 <a href="#" class="text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

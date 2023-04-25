@@ -109,7 +109,7 @@ function dataPersonnel() {
         </div>
         <div class="col-md-7 mt-5">
           
-          <form action="reponse.php" method="POST" class="sticky-top mt-5">
+          <form action="reponse.php" method="POST" class=" mt-5">
             <p class=" text-secondary pt-3" id="phrase"></p>
             <div id="date">
               <div class="input-group mb-3 w-75">

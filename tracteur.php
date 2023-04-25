@@ -103,7 +103,7 @@ function dataBesoin(){
         <div class="container-fluid pt-5 bg-transparent">
         <?php
                 include 'connexion.php';
-                        
+                //$reqSql= ("SELECT idDepense, Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE (DatesDep BETWEEN '2023-04-01' AND '2023-04-25') and (Tracteur.idChamps = Champs_cultive.idChamps) order by idDepense desc");       
                 $reqSql= ("SELECT idDepense, Cout_Mazout, Cout_Pannes, MontantDepense, Tracteur.Motif, NomTracteur, DatesDep, TotalBesoinT, NomClient, DatesLocation, TypeClient FROM Tracteur, Champs_cultive WHERE Tracteur.idChamps = Champs_cultive.idChamps order by idDepense desc");
                 $result= mysqli_query($db, $reqSql);
                 if(mysqli_num_rows($result)>0){
