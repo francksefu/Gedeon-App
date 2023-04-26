@@ -45,8 +45,8 @@
                             <label class="input-group-text" for="type">Type d entrer</label>
                             <select class="form-select" id="type">
                               <option selected value="autres">Autres</option>
-                              <option value="Emprunt">Remise Emprunt</option>
-                              <option value="Financement">Financement</option>
+                              <option value="Emprunt">Emprunt</option>
+                              <option value="Remboursement">Remboursement</option>
                               
                             </select>
                         </div>

@@ -55,14 +55,33 @@ function showHint(str) {
     }
   }
 
-btn.addEventListener('click', () => {
-    if(salaireConvenu.value == ''){
-        messageComplete(salaireVide);
-        return;
-      } else {
-        enleveMessage(salaireVide);
+  function controle(str) {
+    if (str.length == 0) {
+      document.getElementById("dejaPaie").value = "";
+      return;
+    } else {
+      const xmlhttp = new XMLHttpRequest();
+      xmlhttp.onload = function() {
+        feedback = this.responseText;
+        document.getElementById("dejaPaie").value = this.responseText;
       }
-   
+    xmlhttp.open("GET", "controlePaie.php?q=" + str);
+    xmlhttp.send();
+    }
+  }
+
+salaireConvenu.addEventListener('change', () => {
+  controle(salaireConvenu.value);
+});
+
+btn.addEventListener('click', () => {
+  if(salaireConvenu.value == ''){
+    messageComplete(salaireVide);
+    return;
+  } else {
+    enleveMessage(salaireVide);
+  }
+  
       if(montant.value == ''){
         messageComplete(montantVide);
         return;

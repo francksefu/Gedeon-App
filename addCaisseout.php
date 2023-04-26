@@ -47,7 +47,7 @@
                             <select class="form-select" id="type">
                               <option selected value="autres">Autres</option>
                               <option value="Emprunt">Emprunt</option>
-                              <option value="Financement">Financement</option>
+                              <option value="Remboursement">Remboursement</option>
                               
                             </select>
                         </div>

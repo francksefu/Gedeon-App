@@ -23,7 +23,6 @@ const tousSalaireSur1Champs2Dates = document.querySelector('#tous-les-salaires-s
 
 const ventes = document.querySelector('#ventes-2Dates');
 const depots = document.querySelector('#depots-2Dates');
-const resume = document.querySelector('#resume-2Dates');
 
 function complete(phraseCont, type, data, cache) {
   const phrase = document.querySelector('#phrase');
@@ -105,23 +104,14 @@ caisseRemboursement.addEventListener('click',() => {
 });
 
 travailNonPayeEmploye.addEventListener('click',() => {
-  const phrase = 'voir le travail que vous n avez pas encore payee a un employé';
+  const phrase = 'Voir tous les salaires et les paiements d un employee';
   complete(phrase, 'identifiant', 'dataPersonnel', 'travailNPE');
 });
 
-travailPaieNonPaieEmploye.addEventListener('click',() => {
-  const phrase = 'voir le travail que vous avez deja payEE et  non payEE a un employé';
-  complete(phrase, 'identifiant', 'dataPersonnel', 'travailPNPE');
-});
 
 travailPaieNonPaieEmploye2Dates.addEventListener('click',() => {
-  const phrase = 'voir le travail que vous avez deja payEE et  non payEE a un employé entre 2 dates';
+  const phrase = 'Voir tous les salaires et les paiements d un employee entre 2 dates';
   complete(phrase, 'tout', 'dataPersonnel', 'travailPNP2date');
-});
-
-toutTravauxNonPaye.addEventListener('click',() => {
-  const phrase = 'Tous les travailleurs non payEE entre 2 dates';
-  complete(phrase, 'date', '', 'toutTravauxNonPaye');
 });
 
 salaireConvenu1PersonnelEntre2Dates.addEventListener('click',() => {
@@ -153,9 +143,3 @@ depots.addEventListener('click',() => {
   const phrase = 'depot entre 2 dates, completez et voyez';
   complete(phrase, 'date', '', 'depot');
 });
-
-resume.addEventListener('click',() => {
-  const phrase = 'resume entre 2 dates, completez et voyez';
-  complete(phrase, 'date', '', 'resume');
-});
-

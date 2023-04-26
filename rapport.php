@@ -82,10 +82,8 @@ function dataPersonnel() {
             <br><br>
 
             <h2>Paiement et salaire</h2>
-            <button class="btn btn-primary mb-2" id="travail1">Travail non payee d un employee</button>
-            <button class="btn btn-primary mb-2" id="travail-non-paye-et-payer-d1-employe">Travail payee et non payee d un employee</button>
-            <button class="btn btn-primary mb-2" id="travail-non-paye-et-payer-d1-employe-sur-une-periode">Travail payee et non payee d un employee sur entre 2 dates</button>
-            <button class="btn btn-primary mb-2" id="tout-lestravaux-nonpayee">Tous les travailleurs et travaux pas encore payee entre 2 dates</button>
+            <button class="btn btn-primary mb-2" id="travail1">Voir tous les salaires et les paiements d un employee</button>
+            <button class="btn btn-primary mb-2" id="travail-non-paye-et-payer-d1-employe-sur-une-periode">Voir tous les salaires et les paiements d un employee 2 dates</button>
             <!-- Tous les salaire  des tous les employee entre 2 date -->
             <button class="btn btn-primary mb-2" id="salaire-convenu-sur-une-periode">Salaire convenu entre 2 dates</button>
             <!-- Tous les salaire qu lui a attribuer entre 2 date -->
@@ -102,16 +100,12 @@ function dataPersonnel() {
             <h2>Depots</h2>
             <button class="btn btn-primary" id="depots-2Dates">Entre 2 dates</button>
             <br><br>
-
-            <h2>Resume</h2>
-            <button class="btn btn-primary" id="resume-2Dates">Entre 2 dates</button>
-            <br><br>
         </div>
         <div class="col-md-7 mt-5">
           
           <form action="reponse.php" method="POST" class=" mt-5">
-            <p class=" text-secondary pt-3" id="phrase"></p>
-            <div id="date">
+            <p class=" text-secondary pt-3 mt-5" id="phrase"></p>
+            <div id="date" class="mt-5">
               <div class="input-group mb-3 w-75">
                 <span class="input-group-text" >Dates 1*</span>
                 <input required type="date"  name="Date1" id="dates1" class="form-control" placeholder="mettre la date" aria-label="Username" aria-describedby="nom" value="<?php $d = strtotime("today"); echo date('Y-m-d',$d); ?>">

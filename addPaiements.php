@@ -35,7 +35,7 @@
     if(mysqli_num_rows($result)>0){
                         
         while($row= mysqli_fetch_assoc($result)){
-            echo"<option value='ID :".$row["idSalaire"].": Nom du travailleur :".$row["Nom"].": Salaire convenu :".$row["Salaire"].":Fc en date du = :".$row["DatesDit"].": pour le client = :".$row["NomClient"]."'>".$row["Nom"]." : ".$row["Salaire"]." : ".$row["NomClient"]."</option>"; 
+            echo"<option value='ID :".$row["idSalaire"].": Nom du travailleur :".$row["Nom"].": Salaire convenu :".$row["Salaire"].":$ en date du = :".$row["DatesDit"].": pour le client = :".$row["NomClient"]."'>".$row["Nom"]." : ".$row["Salaire"]." : ".$row["NomClient"]."</option>"; 
         }
                 
    }else{echo "Une erreur s est produite ";}
@@ -76,7 +76,13 @@
                             <div class="input-group ">
                                 <span class="input-group-text">Montant payé*</span>
                                 <input required type="float" id="montant" name="CM" class="form-control" placeholder="entrer salaire payé" aria-label="Amount (to the nearest cdf)">
-                                <span class="input-group-text">FC</span>
+                                <span class="input-group-text">$</span>
+                            </div>
+
+                            <div class="input-group ">
+                                <span class="input-group-text">deja payé</span>
+                                <input readonly type="text" id="dejaPaie" name="CM" class="form-control" aria-label="Amount (to the nearest cdf)">
+                                <span class="input-group-text">$</span>
                             </div>
                             <small id="montantVide"></small>
                         </div>
